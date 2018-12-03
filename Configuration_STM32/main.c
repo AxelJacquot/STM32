@@ -9,6 +9,12 @@ int main(void){
 	unsigned char cmp = 0;
 	GPIO_Configuration(GPIOA, GPIO_MODE_INPUT, Button_Pin,0);
 	GPIO_Configuration(GPIOD, GPIO_MODE_AF_PP, Green | Orange | Red | Blue, GPIO_AF2_TIM4);
+	Timer_Config(&TIM_Handle,TIM4, 16000, 2000);
+	Timer_Mode_OCPWM_Config(&TIM_Handle, TIM_OCMODE_PWM2, TIM_OCPOLARITY_HIGH);
+	Timer_PWM_OCPWM_Pulse_Channel(&TIM_Handle, TIM_CHANNEL_1, 250);
+	Timer_PWM_OCPWM_Pulse_Channel(&TIM_Handle, TIM_CHANNEL_4, 1500);
+	HAL_TIM_OC_Start(&TIM_Handle, TIM_CHANNEL_1);
+	HAL_TIM_OC_Start(&TIM_Handle, TIM_CHANNEL_4);
 	/*Timer_Config(TIMER4, 16000, 2000);
 	Timer_Mode_Config( TIM_OCMODE_PWM2, TIM_OCPOLARITY_HIGH);
 	Timer_PWM_OC_Pulse_Channel(TIM_CHANNEL_1, 250);
@@ -16,18 +22,18 @@ int main(void){
 	Timer_PWM_OC_Pulse_Channel(TIM_CHANNEL_3, 1000);
 	Timer_PWM_OC_Pulse_Channel(TIM_CHANNEL_4, 1500);*/
 	while(1){
-		if(HAL_GPIO_ReadPin(GPIOA,Button_Pin)){										//V?rifie si le bouton est appuy?
+		/*if(HAL_GPIO_ReadPin(GPIOA,Button_Pin)){										//V?rifie si le bouton est appuy?
 			while(HAL_GPIO_ReadPin(GPIOA,Button_Pin));							//AntiRebond au noveau du bouton permettant aussi d'effectuer l'action apr?s relachement du bouton
 			wait(10);																	
 			Led(&cmp);														//Sous programme g?rant la led a llum? selon le nombre de fois o? le bouton a ?t? appuy?
 			cmp++;															//Incr?mentation du nombre de fois o? le bouton a ?t? apuy?
 			if(cmp == 4)													//V?rification si nombre de fois ou le bouton a ?t? appuy? n'est pas hors de limite
 				cmp=0;
-		}
+		}*/
 	}
 }
 	
-void Led(unsigned char *led){
+/*void Led(unsigned char *led){
 	if(*led == 0){
 		Timer_Config(&TIM_Handle,TIM4, 16000, 2000);
 		Timer_Mode_OCPWM_Config(&TIM_Handle, TIM_OCMODE_PWM2, TIM_OCPOLARITY_HIGH);
@@ -65,7 +71,7 @@ void Led(unsigned char *led){
 		HAL_TIM_OC_Stop(&TIM_Handle, TIM_CHANNEL_4);
 	}
 	
-}	
+}*/
 	
 
 	
