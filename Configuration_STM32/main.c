@@ -15,12 +15,6 @@ int main(void){
 	Timer_PWM_OCPWM_Pulse_Channel(&TIM_Handle, TIM_CHANNEL_4, 1500);
 	HAL_TIM_OC_Start(&TIM_Handle, TIM_CHANNEL_1);
 	HAL_TIM_OC_Start(&TIM_Handle, TIM_CHANNEL_4);
-	/*Timer_Config(TIMER4, 16000, 2000);
-	Timer_Mode_Config( TIM_OCMODE_PWM2, TIM_OCPOLARITY_HIGH);
-	Timer_PWM_OC_Pulse_Channel(TIM_CHANNEL_1, 250);
-	Timer_PWM_OC_Pulse_Channel(TIM_CHANNEL_2, 500);
-	Timer_PWM_OC_Pulse_Channel(TIM_CHANNEL_3, 1000);
-	Timer_PWM_OC_Pulse_Channel(TIM_CHANNEL_4, 1500);*/
 	while(1){
 		/*if(HAL_GPIO_ReadPin(GPIOA,Button_Pin)){										//V?rifie si le bouton est appuy?
 			while(HAL_GPIO_ReadPin(GPIOA,Button_Pin));							//AntiRebond au noveau du bouton permettant aussi d'effectuer l'action apr?s relachement du bouton
